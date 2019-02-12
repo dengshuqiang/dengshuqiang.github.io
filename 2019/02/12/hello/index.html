@@ -423,7 +423,7 @@
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        540
+                        510
                     </div>
                     
 
@@ -448,44 +448,7 @@
             <div id="articleContent">
                 <p>今日遇到老项目为ie项目,使用了谷歌放弃了的window.showModalDialog 弹窗传递参数,谷歌一直报错所以想了个法子通过阻塞来实现.</p>
 <p>1.先需要一个判断浏览器的函数</p>
-<p>//判断是否是IE浏览器<br>function myBrowser() {<br>    var userAgent = navigator.userAgent; //取得浏览器的userAgent字符串<br>    var isOpera = userAgent.indexOf(“Opera”) &gt; -1; //判断是否Opera浏览器<br>    var isIE = userAgent.indexOf(“compatible”) &gt; -1<br>            &amp;&amp; userAgent.indexOf(“MSIE”) &gt; -1 &amp;&amp; !isOpera; //判断是否IE浏览器<br>    var isEdge = userAgent.indexOf(“Edge”) &gt; -1; //判断是否IE的Edge浏览器<br>    var isFF = userAgent.indexOf(“Firefox”) &gt; -1; //判断是否Firefox浏览器<br>    var isSafari = userAgent.indexOf(“Safari”) &gt; -1<br>            &amp;&amp; userAgent.indexOf(“Chrome”) == -1; //判断是否Safari浏览器<br>    var isChrome = userAgent.indexOf(“Chrome”) &gt; -1<br>            &amp;&amp; userAgent.indexOf(“Safari”) &gt; -1; //判断Chrome浏览器</p>
-<pre><code>if (isIE) {
-    var reIE = new RegExp(&quot;MSIE (\\d+\\.\\d+);&quot;);
-    reIE.test(userAgent);
-    var fIEVersion = parseFloat(RegExp[&quot;$1&quot;]);
-    if (fIEVersion == 7) {
-        return &quot;IE7&quot;;
-    } else if (fIEVersion == 8) {
-        return &quot;IE8&quot;;
-    } else if (fIEVersion == 9) {
-        return &quot;IE9&quot;;
-    } else if (fIEVersion == 10) {
-        return &quot;IE10&quot;;
-    } else if (fIEVersion == 11) {
-        return &quot;IE11&quot;;
-    } else {
-        return &quot;0&quot;;
-    }//IE版本过低
-    return &quot;IE&quot;;
-}else 
-if (isOpera) {
-    return &quot;Opera&quot;;
-} else
-if (isEdge) {
-    return &quot;Edge&quot;;
-} else
-if (isFF) {
-    return &quot;FF&quot;;
-} else
-if (isSafari) {
-    return &quot;Safari&quot;;
-} else
-if (isChrome) {
-    return &quot;Chrome&quot;;
-}else{
-     return &quot;IE&quot;;
-}
-</code></pre><p>}</p>
+<p><pre><br><code><br>//判断是否是IE浏览器<br>function myBrowser() {<br>    var userAgent = navigator.userAgent; //取得浏览器的userAgent字符串<br>    var isOpera = userAgent.indexOf(“Opera”) &gt; -1; //判断是否Opera浏览器<br>    var isIE = userAgent.indexOf(“compatible”) &gt; -1<br>            &amp;&amp; userAgent.indexOf(“MSIE”) &gt; -1 &amp;&amp; !isOpera; //判断是否IE浏览器<br>    var isEdge = userAgent.indexOf(“Edge”) &gt; -1; //判断是否IE的Edge浏览器<br>    var isFF = userAgent.indexOf(“Firefox”) &gt; -1; //判断是否Firefox浏览器<br>    var isSafari = userAgent.indexOf(“Safari”) &gt; -1<br>            &amp;&amp; userAgent.indexOf(“Chrome”) == -1; //判断是否Safari浏览器<br>    var isChrome = userAgent.indexOf(“Chrome”) &gt; -1<br>            &amp;&amp; userAgent.indexOf(“Safari”) &gt; -1; //判断Chrome浏览器<br>    if (isIE) {<br>        var reIE = new RegExp(“MSIE (\d+\.\d+);”);<br>        reIE.test(userAgent);<br>        var fIEVersion = parseFloat(RegExp[“$1”]);<br>        if (fIEVersion == 7) {<br>            return “IE7”;<br>        } else if (fIEVersion == 8) {<br>            return “IE8”;<br>        } else if (fIEVersion == 9) {<br>            return “IE9”;<br>        } else if (fIEVersion == 10) {<br>            return “IE10”;<br>        } else if (fIEVersion == 11) {<br>            return “IE11”;<br>        } else {<br>            return “0”;<br>        }//IE版本过低<br>        return “IE”;<br>    }else<br>    if (isOpera) {<br>        return “Opera”;<br>    } else<br>    if (isEdge) {<br>        return “Edge”;<br>    } else<br>    if (isFF) {<br>        return “FF”;<br>    } else<br>    if (isSafari) {<br>        return “Safari”;<br>    } else<br>    if (isChrome) {<br>        return “Chrome”;<br>    }else{<br>         return “IE”;<br>    }<br>}<br></code></pre><br></p>
 <p>2.需要用到阻塞函数</p>
 <p>/*</p>
 <ul>
@@ -883,7 +846,7 @@ window.eventList[ind]=obj;
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">613</span>
+                <span class="white-color">583</span>
             
 
             
