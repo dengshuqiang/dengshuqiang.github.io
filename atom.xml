@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>人间失格</title>
+  <title>&quot;人间失格&quot;</title>
   
-  <subtitle>人间失格</subtitle>
+  <subtitle>&quot;人间失格&quot;</subtitle>
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
