@@ -4,10 +4,10 @@
 
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="hello, &#34;人间失格&#34;">
-    <meta name="description" content="这是一个demo
-/该函数把要暂停的函数放到数组window.eventList里，同时通过setTimeout来调用继续函数。继续函数如下： 
-/function GoOn(ind){    var obj=window.eventLis">
+    <meta name="keywords" content="兼容window.showModalDialog, &#34;人间失格&#34;">
+    <meta name="description" content="今日遇到老项目为ie项目,使用了谷歌放弃了的window.showModalDialog 弹窗传递参数,谷歌一直报错所以想了个法子通过阻塞来实现.
+1.先需要一个判断浏览器的函数
+//判断是否是IE浏览器function myBrowser">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -15,7 +15,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>hello | &#34;人间失格&#34;</title>
+    <title>兼容window.showModalDialog | &#34;人间失格&#34;</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -282,13 +282,13 @@
 
 
 
-<div class="bg-cover post-cover" style="background-image: url('/medias/featureimages/10.jpg')">
+<div class="bg-cover post-cover" style="background-image: url('/medias/featureimages/1.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        hello
+                        兼容window.showModalDialog
                     </div>
                 </div>
             </div>
@@ -401,8 +401,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/java/" target="_blank">
-                                <span class="chip bg-color">java</span>
+                            <a href="/tags/js/" target="_blank">
+                                <span class="chip bg-color">js</span>
                             </a>
                         
                     </div>
@@ -423,14 +423,14 @@
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        59
+                        540
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        1 分
+                        2 分
                     </div>
                     
                 
@@ -446,9 +446,62 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>这是一个demo</p>
+                <p>今日遇到老项目为ie项目,使用了谷歌放弃了的window.showModalDialog 弹窗传递参数,谷歌一直报错所以想了个法子通过阻塞来实现.</p>
+<p>1.先需要一个判断浏览器的函数</p>
+<p>//判断是否是IE浏览器<br>function myBrowser() {<br>    var userAgent = navigator.userAgent; //取得浏览器的userAgent字符串<br>    var isOpera = userAgent.indexOf(“Opera”) &gt; -1; //判断是否Opera浏览器<br>    var isIE = userAgent.indexOf(“compatible”) &gt; -1<br>            &amp;&amp; userAgent.indexOf(“MSIE”) &gt; -1 &amp;&amp; !isOpera; //判断是否IE浏览器<br>    var isEdge = userAgent.indexOf(“Edge”) &gt; -1; //判断是否IE的Edge浏览器<br>    var isFF = userAgent.indexOf(“Firefox”) &gt; -1; //判断是否Firefox浏览器<br>    var isSafari = userAgent.indexOf(“Safari”) &gt; -1<br>            &amp;&amp; userAgent.indexOf(“Chrome”) == -1; //判断是否Safari浏览器<br>    var isChrome = userAgent.indexOf(“Chrome”) &gt; -1<br>            &amp;&amp; userAgent.indexOf(“Safari”) &gt; -1; //判断Chrome浏览器</p>
+<pre><code>if (isIE) {
+    var reIE = new RegExp(&quot;MSIE (\\d+\\.\\d+);&quot;);
+    reIE.test(userAgent);
+    var fIEVersion = parseFloat(RegExp[&quot;$1&quot;]);
+    if (fIEVersion == 7) {
+        return &quot;IE7&quot;;
+    } else if (fIEVersion == 8) {
+        return &quot;IE8&quot;;
+    } else if (fIEVersion == 9) {
+        return &quot;IE9&quot;;
+    } else if (fIEVersion == 10) {
+        return &quot;IE10&quot;;
+    } else if (fIEVersion == 11) {
+        return &quot;IE11&quot;;
+    } else {
+        return &quot;0&quot;;
+    }//IE版本过低
+    return &quot;IE&quot;;
+}else 
+if (isOpera) {
+    return &quot;Opera&quot;;
+} else
+if (isEdge) {
+    return &quot;Edge&quot;;
+} else
+if (isFF) {
+    return &quot;FF&quot;;
+} else
+if (isSafari) {
+    return &quot;Safari&quot;;
+} else
+if (isChrome) {
+    return &quot;Chrome&quot;;
+}else{
+     return &quot;IE&quot;;
+}
+</code></pre><p>}</p>
+<p>2.需要用到阻塞函数</p>
+<p>/*</p>
+<ul>
+<li>暂停函数<br>*/<br>function Pause(obj,iMinSecond){<br> if (window.eventList==null) window.eventList=new Array();<br> var ind=-1;<br> for (var i=0;i&lt;window.eventList.length;i++){ <pre><code>if (window.eventList[i]==null) { 
+    window.eventList[i]=obj; 
+    ind=i; 
+    break; 
+} 
+</code></pre> }<br> if (ind==-1){ <pre><code>ind=window.eventList.length; 
+window.eventList[ind]=obj; 
+</code></pre> }<br> setTimeout(“GoOn(“ + ind + “)”,iMinSecond);<br>}</li>
+</ul>
 <p>/<em><br>该函数把要暂停的函数放到数组window.eventList里，同时通过setTimeout来调用继续函数。<br>继续函数如下： 
 </em>/<br>function GoOn(ind){<br>    var obj=window.eventList[ind];<br>    window.eventList[ind]=null;<br>    if (obj.NextStep) obj.NextStep();<br>    else obj();<br>} </p>
+<p>3.通过判断myBrowser().indexOf(“IE”)&gt;-1 来判断浏览器是否IE,如果不是则进行阻塞,直到 window.returnValue 返回值</p>
+<p>  此处的openDIVModule() 为通过layer封装open方法,可自行搜索.<br>  var url = “”;<br>  window.userSelectWin = openDIVModule(url, 800, 565, true, “选择”);<br>  str = window.returnValue;<br>  var timer = setInterval(function(){<br>    str = window.returnValue;<br>    if(!str){<br>      Pause(this,500);//调用暂停函数<br>    }else{<br>      window.returnValue=null;//清空返回值<br>      clearInterval(timer);<br>    }<br>    }, 500);<br>  this.NextStep=function(){<br>        //得到返回值之后的操作<br>   }</p>
 
             </div>
             <hr>
@@ -589,7 +642,7 @@
                     </span>
                     <a href="http://yoursite.com" class="b-link-green">"人间失格"</a>
                     <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
-                    <a href="/2019/02/12/hello/" class="b-link-green">hello</a>
+                    <a href="/2019/02/12/hello/" class="b-link-green">兼容window.showModalDialog</a>
                 </p>
             </div>
         </div>
@@ -663,15 +716,15 @@
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="hello">
+                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="兼容window.showModalDialog">
                         
-                        <span class="card-title">hello</span>
+                        <span class="card-title">兼容window.showModalDialog</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary">这是一个demo
-/该函数把要暂停的函数放到数组window.eventList里，同时通过setTimeout来调用继续函数。继续函数如下： 
-/function GoOn(ind){    var obj=window.eventLis</div>
+                    <div class="summary">今日遇到老项目为ie项目,使用了谷歌放弃了的window.showModalDialog 弹窗传递参数,谷歌一直报错所以想了个法子通过阻塞来实现.
+1.先需要一个判断浏览器的函数
+//判断是否是IE浏览器function myBrowser</div>
                     <div class="publish-info">
                             <span class="publish-date">
                                 <i class="fa fa-clock-o fa-fw icon-date"></i>2019-02-12
@@ -688,8 +741,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/java/" target="_blank">
-                        <span class="chip bg-color">java</span>
+                    <a href="/tags/js/" target="_blank">
+                        <span class="chip bg-color">js</span>
                     </a>
                     
                 </div>
@@ -830,7 +883,7 @@
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">132</span>
+                <span class="white-color">613</span>
             
 
             
