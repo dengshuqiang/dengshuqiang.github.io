@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-02-12T13:00:51.883Z</updated>
+  <updated>2019-02-12T13:02:22.497Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://yoursite.com/2019/02/12/hello/"/>
     <id>http://yoursite.com/2019/02/12/hello/</id>
     <published>2019-02-12T09:59:04.000Z</published>
-    <updated>2019-02-12T13:00:51.883Z</updated>
+    <updated>2019-02-12T13:02:22.497Z</updated>
     
     <content type="html"><![CDATA[<p>今日遇到老项目为ie项目,使用了谷歌放弃了的window.showModalDialog 弹窗传递参数,谷歌一直报错所以想了个法子通过阻塞来实现.</p><p>1.先需要一个判断浏览器的函数</p><p><pre><br><code><br>//判断是否是IE浏览器<br>function myBrowser () {<br>    var userAgent = navigator.userAgent; //取得浏览器的userAgent字符串<br>    var isOpera = userAgent.indexOf(“Opera”) &gt; -1; //判断是否Opera浏览器<br>    var isIE = userAgent.indexOf(“compatible”) &gt; -1<br>            &amp;&amp; userAgent.indexOf(“MSIE”) &gt; -1 &amp;&amp; !isOpera; //判断是否IE浏览器<br>    var isEdge = userAgent.indexOf(“Edge”) &gt; -1; //判断是否IE的Edge浏览器<br>    var isFF = userAgent.indexOf(“Firefox”) &gt; -1; //判断是否Firefox浏览器<br>    var isSafari = userAgent.indexOf(“Safari”) &gt; -1<br>            &amp;&amp; userAgent.indexOf(“Chrome”) == -1; //判断是否Safari浏览器<br>    var isChrome = userAgent.indexOf(“Chrome”) &gt; -1<br>            &amp;&amp; userAgent.indexOf(“Safari”) &gt; -1; //判断Chrome浏览器<br>    if (isIE) {<br>        var reIE = new RegExp(“MSIE (\d+\.\d+);”);<br>        reIE.test(userAgent);<br>        var fIEVersion = parseFloat(RegExp[“$1”]);<br>        if (fIEVersion == 7) {<br>            return “IE7”;<br>        } else if (fIEVersion == 8) {<br>            return “IE8”;<br>        } else if (fIEVersion == 9) {<br>            return “IE9”;<br>        } else if (fIEVersion == 10) {<br>            return “IE10”;<br>        } else if (fIEVersion == 11) {<br>            return “IE11”;<br>        } else {<br>            return “0”;<br>        }//IE版本过低<br>        return “IE”;<br>    }else<br>    if (isOpera) {<br>        return “Opera”;<br>    } else<br>    if (isEdge) {<br>        return “Edge”;<br>    } else<br>    if (isFF) {<br>        return “FF”;<br>    } else<br>    if (isSafari) {<br>        return “Safari”;<br>    } else<br>    if (isChrome) {<br>        return “Chrome”;<br>    }else{<br>         return “IE”;<br>    }<br>}<br></code></pre><br></p><p>2.需要用到阻塞函数</p><p>暂停函数  </p><p><pre><br><code><br>function Pause(obj,iMinSecond){<br>    if (window.eventList==null) window.eventList=new Array();<br>    var ind=-1;<br>    for (var i=0;i&lt;window.eventList.length;i++){<br>        if (window.eventList[i]==null) {<br>            window.eventList[i]=obj;<br>            ind=i;<br>            break;<br>        }<br>    }<br>    if (ind==-1){<br>        ind=window.eventList.length;<br>        window.eventList[ind]=obj;<br>    }<br>    setTimeout(“GoOn(“ + ind + “)”,iMinSecond);<br>}<br></code></pre><br></p><p><pre><br><code><br>该函数把要暂停的函数放到数组window.eventList里，同时通过setTimeout来调用继续函数。<br>继续函数如下：<br>function GoOn(ind){<br>    var obj=window.eventList[ind];<br>    window.eventList[ind]=null;<br>    if (obj.NextStep) obj.NextStep();<br>    else obj();<br>}<br></code></pre><br><br>3.通过判断myBrowser().indexOf(“IE”)&gt;-1 来判断浏览器是否IE,如果不是则进行阻塞,直到 window.returnValue 返回值</p><p>  此处的openDIVModule() 为通过layer封装open方法,可自行搜索.<br>  <pre><br><code><br>  var url = “”;<br>  window.userSelectWin = openDIVModule(url, 800, 565, true, “选择”);<br>  str = window.returnValue;<br>  var timer = setInterval(function(){<br>    str = window.returnValue;<br>    if(!str){<br>      Pause(this,500);//调用暂停函数<br>    }else{<br>      window.returnValue=null;//清空返回值<br>      clearInterval(timer);<br>    }<br>    }, 500);<br>      this.NextStep=function(){<br>        //得到返回值之后的操作<br>   }<br>   </code></pre><br></p>]]></content>
     
@@ -36,7 +36,7 @@
     
     </summary>
     
-      <category term="Markdown" scheme="http://yoursite.com/categories/Markdown/"/>
+      <category term="代码" scheme="http://yoursite.com/categories/%E4%BB%A3%E7%A0%81/"/>
     
     
       <category term="js" scheme="http://yoursite.com/tags/js/"/>
