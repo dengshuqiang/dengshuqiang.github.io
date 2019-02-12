@@ -8,7 +8,7 @@
       <link href="/2019/02/12/hello/"/>
       <url>/2019/02/12/hello/</url>
       
-        <content type="html"><![CDATA[<p>这是一个demo</p>]]></content>
+        <content type="html"><![CDATA[<p>这是一个demo</p><p>/<em><br>该函数把要暂停的函数放到数组window.eventList里，同时通过setTimeout来调用继续函数。<br>继续函数如下： </em>/<br>function GoOn(ind){<br>    var obj=window.eventList[ind];<br>    window.eventList[ind]=null;<br>    if (obj.NextStep) obj.NextStep();<br>    else obj();<br>} </p>]]></content>
       
       
       

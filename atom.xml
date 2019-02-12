@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-02-12T12:24:42.414Z</updated>
+  <updated>2019-02-12T12:43:57.017Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -21,16 +21,17 @@
     <link href="http://yoursite.com/2019/02/12/hello/"/>
     <id>http://yoursite.com/2019/02/12/hello/</id>
     <published>2019-02-12T09:59:04.000Z</published>
-    <updated>2019-02-12T12:24:42.414Z</updated>
+    <updated>2019-02-12T12:43:57.017Z</updated>
     
-    <content type="html"><![CDATA[<p>这是一个demo</p>]]></content>
+    <content type="html"><![CDATA[<p>这是一个demo</p><p>/<em><br>该函数把要暂停的函数放到数组window.eventList里，同时通过setTimeout来调用继续函数。<br>继续函数如下： </em>/<br>function GoOn(ind){<br>    var obj=window.eventList[ind];<br>    window.eventList[ind]=null;<br>    if (obj.NextStep) obj.NextStep();<br>    else obj();<br>} </p>]]></content>
     
     <summary type="html">
     
       
       
         &lt;p&gt;这是一个demo&lt;/p&gt;
-
+&lt;p&gt;/&lt;em&gt;&lt;br&gt;该函数把要暂停的函数放到数组window.eventList里，同时通过setTimeout来调用继续函数。&lt;br&gt;继续函数如下： 
+&lt;/em&gt;/&lt;br&gt;function GoOn(ind){&lt;br&gt;    var obj=
       
     
     </summary>
