@@ -7,7 +7,7 @@
     <meta name="keywords" content="java网络爬虫学习(1), &#34;人间失格&#34;">
     <meta name="description" content="创建项目就不说了,我这里使用的是IDEA加MAVEN.先构建demo1.java 创建第一个方法
 内容参考:  csdn用户:_inkrain https://me.csdn.net/championhengyi
- ​12345678910">
+public void s">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -432,7 +432,7 @@
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        253
+                        218
                     </div>
                     
 
@@ -457,7 +457,7 @@
             <div id="articleContent">
                 <p>创建项目就不说了,我这里使用的是IDEA加MAVEN.<br>先构建demo1.java 创建第一个方法</p>
 <p>内容参考:<br>  csdn用户:_inkrain <a href="https://me.csdn.net/championhengyi" target="_blank" rel="noopener">https://me.csdn.net/championhengyi</a></p>
-<p> ​<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">public void show()&#123;</span><br><span class="line">        //创建客户端</span><br><span class="line">        CloseableHttpClient closeableHttpClient = HttpClients.createDefault();</span><br><span class="line">        //创建请求Get实例</span><br><span class="line">        HttpGet httpGet = new HttpGet(&quot;https://www.baidu.com&quot;);</span><br><span class="line">        //添加头部信息模拟浏览器访问</span><br><span class="line">        httpGet.setHeader(&quot;Accept&quot;, &quot;text/html,application/xhtml+xml,&quot; +</span><br><span class="line">                &quot;application/xml;q=0.9,image/webp,*/*;q=0.8&quot;);</span><br><span class="line">        httpGet.setHeader(&quot;Accept-Encoding&quot;, &quot;gzip, deflate, sdch, br&quot;);</span><br><span class="line">        httpGet.setHeader(&quot;Accept-Language&quot;, &quot;zh-CN,zh;q=0.8&quot;);</span><br><span class="line">        httpGet.setHeader(&quot;User-Agent&quot;, &quot;Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36&quot; +</span><br><span class="line">                &quot; (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36&quot;);</span><br><span class="line">        try &#123;</span><br><span class="line">            //客户端执行httpGet方法，返回响应</span><br><span class="line">            CloseableHttpResponse closeableHttpResponse = closeableHttpClient.execute(httpGet);</span><br><span class="line">            //得到服务响应状态码</span><br><span class="line">            if(closeableHttpResponse.getStatusLine().getStatusCode() == 200)&#123;</span><br><span class="line">                //得到响应实体</span><br><span class="line">                String entity = EntityUtils.toString (closeableHttpResponse.getEntity(), &quot;utf-8&quot;);</span><br><span class="line">                System.out.println(entity);</span><br><span class="line">            &#125; else&#123;</span><br><span class="line">                //如果是其他状态码则做其他处理</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; catch (ClientProtocolException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; catch (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">​</span><br></pre></td></tr></table></figure></p>
+<p><pre><br><code><br>public void show(){<br>        //创建客户端<br>        CloseableHttpClient closeableHttpClient = HttpClients.createDefault();<br>        //创建请求Get实例<br>        HttpGet httpGet = new HttpGet(“<a href="https://www.baidu.com&quot;)" target="_blank" rel="noopener">https://www.baidu.com&quot;)</a>;<br>        //添加头部信息模拟浏览器访问<br>        httpGet.setHeader(“Accept”, “text/html,application/xhtml+xml,” +<br>                “application/xml;q=0.9,image/webp,<em>/</em>;q=0.8”);<br>        httpGet.setHeader(“Accept-Encoding”, “gzip, deflate, sdch, br”);<br>        httpGet.setHeader(“Accept-Language”, “zh-CN,zh;q=0.8”);<br>        httpGet.setHeader(“User-Agent”, “Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36” +<br>                “ (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36”);<br>        try {<br>            //客户端执行httpGet方法，返回响应<br>            CloseableHttpResponse closeableHttpResponse = closeableHttpClient.execute(httpGet);<br>            //得到服务响应状态码<br>            if(closeableHttpResponse.getStatusLine().getStatusCode() == 200){<br>                //得到响应实体<br>                String entity = EntityUtils.toString (closeableHttpResponse.getEntity(), “utf-8”);<br>                System.out.println(entity);<br>            } else{<br>                //如果是其他状态码则做其他处理<br>            }<br>        } catch (ClientProtocolException e) {<br>            e.printStackTrace();<br>        } catch (IOException e) {<br>            e.printStackTrace();<br>        }<br>    }<br></code></pre><br></p>
 
             </div>
             <hr>
@@ -680,7 +680,7 @@
                 <div class="card-content article-content">
                     <div class="summary">创建项目就不说了,我这里使用的是IDEA加MAVEN.先构建demo1.java 创建第一个方法
 内容参考:  csdn用户:_inkrain https://me.csdn.net/championhengyi
- ​12345678910</div>
+public void s</div>
                     <div class="publish-info">
                             <span class="publish-date">
                                 <i class="fa fa-clock-o fa-fw icon-date"></i>2019-02-15
@@ -857,7 +857,7 @@
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">836</span>
+                <span class="white-color">801</span>
             
 
             
