@@ -4,10 +4,9 @@
 
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="兼容window.showModalDialog, &#34;人间失格&#34;">
-    <meta name="description" content="今日遇到老项目为ie项目,使用了谷歌放弃了的window.showModalDialog 弹窗传递参数,谷歌一直报错所以想了个法子通过阻塞来实现.
-1.先需要一个判断浏览器的函数
-//判断是否是IE浏览器function myBrowser">
+    <meta name="keywords" content="java网络爬虫学习(1), &#34;人间失格&#34;">
+    <meta name="description" content="框子先仍在这里
+">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -15,7 +14,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>兼容window.showModalDialog | &#34;人间失格&#34;</title>
+    <title>java网络爬虫学习(1) | &#34;人间失格&#34;</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -282,13 +281,13 @@
 
 
 
-<div class="bg-cover post-cover" style="background-image: url('/medias/featureimages/1.jpg')">
+<div class="bg-cover post-cover" style="background-image: url('/medias/featureimages/6.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        兼容window.showModalDialog
+                        java网络爬虫学习(1)
                     </div>
                 </div>
             </div>
@@ -401,8 +400,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/js/" target="_blank">
-                                <span class="chip bg-color">js</span>
+                            <a href="/tags/java/" target="_blank">
+                                <span class="chip bg-color">java</span>
                             </a>
                         
                     </div>
@@ -425,21 +424,21 @@
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2019-02-12
+                    2019-02-15
                 </div>
 
                 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        510
+                        7
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        2 分
+                        1 分
                     </div>
                     
                 
@@ -455,14 +454,7 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>今日遇到老项目为ie项目,使用了谷歌放弃了的window.showModalDialog 弹窗传递参数,谷歌一直报错所以想了个法子通过阻塞来实现.</p>
-<p>1.先需要一个判断浏览器的函数</p>
-<p><pre><br><code><br>//判断是否是IE浏览器<br>function myBrowser () {<br>    var userAgent = navigator.userAgent; //取得浏览器的userAgent字符串<br>    var isOpera = userAgent.indexOf(“Opera”) &gt; -1; //判断是否Opera浏览器<br>    var isIE = userAgent.indexOf(“compatible”) &gt; -1<br>            &amp;&amp; userAgent.indexOf(“MSIE”) &gt; -1 &amp;&amp; !isOpera; //判断是否IE浏览器<br>    var isEdge = userAgent.indexOf(“Edge”) &gt; -1; //判断是否IE的Edge浏览器<br>    var isFF = userAgent.indexOf(“Firefox”) &gt; -1; //判断是否Firefox浏览器<br>    var isSafari = userAgent.indexOf(“Safari”) &gt; -1<br>            &amp;&amp; userAgent.indexOf(“Chrome”) == -1; //判断是否Safari浏览器<br>    var isChrome = userAgent.indexOf(“Chrome”) &gt; -1<br>            &amp;&amp; userAgent.indexOf(“Safari”) &gt; -1; //判断Chrome浏览器<br>    if (isIE) {<br>        var reIE = new RegExp(“MSIE (\d+\.\d+);”);<br>        reIE.test(userAgent);<br>        var fIEVersion = parseFloat(RegExp[“$1”]);<br>        if (fIEVersion == 7) {<br>            return “IE7”;<br>        } else if (fIEVersion == 8) {<br>            return “IE8”;<br>        } else if (fIEVersion == 9) {<br>            return “IE9”;<br>        } else if (fIEVersion == 10) {<br>            return “IE10”;<br>        } else if (fIEVersion == 11) {<br>            return “IE11”;<br>        } else {<br>            return “0”;<br>        }//IE版本过低<br>        return “IE”;<br>    }else<br>    if (isOpera) {<br>        return “Opera”;<br>    } else<br>    if (isEdge) {<br>        return “Edge”;<br>    } else<br>    if (isFF) {<br>        return “FF”;<br>    } else<br>    if (isSafari) {<br>        return “Safari”;<br>    } else<br>    if (isChrome) {<br>        return “Chrome”;<br>    }else{<br>         return “IE”;<br>    }<br>}<br></code></pre><br></p>
-<p>2.需要用到阻塞函数</p>
-<p>暂停函数  </p>
-<p><pre><br><code><br>function Pause(obj,iMinSecond){<br>    if (window.eventList==null) window.eventList=new Array();<br>    var ind=-1;<br>    for (var i=0;i&lt;window.eventList.length;i++){<br>        if (window.eventList[i]==null) {<br>            window.eventList[i]=obj;<br>            ind=i;<br>            break;<br>        }<br>    }<br>    if (ind==-1){<br>        ind=window.eventList.length;<br>        window.eventList[ind]=obj;<br>    }<br>    setTimeout(“GoOn(“ + ind + “)”,iMinSecond);<br>}<br></code></pre><br></p>
-<p><pre><br><code><br>该函数把要暂停的函数放到数组window.eventList里，同时通过setTimeout来调用继续函数。<br>继续函数如下：<br>function GoOn(ind){<br>    var obj=window.eventList[ind];<br>    window.eventList[ind]=null;<br>    if (obj.NextStep) obj.NextStep();<br>    else obj();<br>}<br></code></pre><br><br>3.通过判断myBrowser().indexOf(“IE”)&gt;-1 来判断浏览器是否IE,如果不是则进行阻塞,直到 window.returnValue 返回值</p>
-<p>  此处的openDIVModule() 为通过layer封装open方法,可自行搜索.<br>  <pre><br><code><br>  var url = “”;<br>  window.userSelectWin = openDIVModule(url, 800, 565, true, “选择”);<br>  str = window.returnValue;<br>  var timer = setInterval(function(){<br>    str = window.returnValue;<br>    if(!str){<br>      Pause(this,500);//调用暂停函数<br>    }else{<br>      window.returnValue=null;//清空返回值<br>      clearInterval(timer);<br>    }<br>    }, 500);<br>      this.NextStep=function(){<br>        //得到返回值之后的操作<br>   }<br>   </code></pre><br></p>
+                <p>框子先仍在这里</p>
 
             </div>
             <hr>
@@ -603,7 +595,7 @@
                     </span>
                     <a href="http://yoursite.com" class="b-link-green">"人间失格"</a>
                     <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
-                    <a href="/2019/02/12/hello/" class="b-link-green">兼容window.showModalDialog</a>
+                    <a href="/2019/02/15/java-Internetworm-1/" class="b-link-green">java网络爬虫学习(1)</a>
                 </p>
             </div>
         </div>
@@ -625,7 +617,7 @@
         repo: 'dengshuqiang.github.io',
         owner: 'dengshuqiang',
         admin: "dengshuqiang",
-        id: '2019-02-12T17-59-04',
+        id: '2019-02-15T10-00-00',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -670,7 +662,8 @@
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2019/02/15/java-Internetworm-1/">
                     <div class="card-image">
@@ -685,9 +678,9 @@
                     <div class="summary">框子先仍在这里
 </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-02-15
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-02-15
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
@@ -700,6 +693,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -718,28 +712,42 @@
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/02/12/hello-world/">
+                <a href="/2019/02/12/hello/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Hello World">
+                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="兼容window.showModalDialog">
                         
-                        <span class="card-title">Hello World</span>
+                        <span class="card-title">兼容window.showModalDialog</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary">Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hex</div>
+                    <div class="summary">今日遇到老项目为ie项目,使用了谷歌放弃了的window.showModalDialog 弹窗传递参数,谷歌一直报错所以想了个法子通过阻塞来实现.
+1.先需要一个判断浏览器的函数
+//判断是否是IE浏览器function myBrowser</div>
                     <div class="publish-info">
                             <span class="publish-date">
                                 <i class="fa fa-clock-o fa-fw icon-date"></i>2019-02-12
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fa fa-user fa-fw"></i>
-                            今何在
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/代码/" class="post-category" target="_blank">
+                                    代码
+                                </a>
+                            
                             
                         </span>
                     </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/js/" target="_blank">
+                        <span class="chip bg-color">js</span>
+                    </a>
+                    
                 </div>
                 
             </div>
